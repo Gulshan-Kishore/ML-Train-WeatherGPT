@@ -1,0 +1,65 @@
+{
+  "train_timestamp": "2026-11-03T01:00:12.775691",
+  "total_samples": 5470,
+  "train_samples": 4376,
+  "test_samples": 1094,
+  "temperature_regression": {
+    "mae": 0.9635977359722335,
+    "rmse": 1.2174885729468534,
+    "r2_score": 0.982955135856441,
+    "unit": "\u00b0C"
+  },
+  "rain_classification": {
+    "accuracy": 0.7330895795246801,
+    "precision": 0.7785016286644951,
+    "recall": 0.5161987041036717,
+    "f1_score": 0.6207792207792208,
+    "roc_auc": 0.7864783178676926,
+    "confusion_matrix": [
+      [
+        563,
+        68
+      ],
+      [
+        224,
+        239
+      ]
+    ]
+  },
+  "condition_classification": {
+    "accuracy": 0.649908592321755,
+    "macro_f1": 0.4896837523792981
+  },
+  "feature_importances": {
+    "temperature": {
+      "temp_avg": 0.8507,
+      "temp_max": 0.0482,
+      "temp_min": 0.0833,
+      "temp_range": 0.0009,
+      "humidity": 0.0017,
+      "pressure": 0.0009,
+      "pressure_diff_std": 0.0009,
+      "wind_speed": 0.0014,
+      "precipitation": 0.0068,
+      "sin_day": 0.0021,
+      "cos_day": 0.0021,
+      "month": 0.0003,
+      "city_code": 0.0009
+    },
+    "rain": {
+      "temp_avg": 0.0644,
+      "temp_max": 0.084,
+      "temp_min": 0.0705,
+      "temp_range": 0.0545,
+      "humidity": 0.2143,
+      "pressure": 0.0607,
+      "pressure_diff_std": 0.0748,
+      "wind_speed": 0.0484,
+      "precipitation": 0.073,
+      "sin_day": 0.0699,
+      "cos_day": 0.1166,
+      "month": 0.0324,
+      "city_code": 0.0365
+    }
+  }
+}
