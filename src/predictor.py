@@ -28,12 +28,26 @@ class WeatherPredictor:
         self.load_model()
 
     def load_model(self):
-        """Loads serialized scikit-learn models from disk."""
+        """Loads serialized scikit-learn models from disk with auto-train fallback."""
         if not os.path.exists(self.model_path):
-            raise FileNotFoundError(
-                f"Model file '{self.model_path}' not found! Please run 'python train.py' first."
-            )
-        self.bundle = joblib.load(self.model_path)
+            print(f"Model file '{self.model_path}' not found! Auto-training now...")
+            try:
+                from train import train_and_evaluate
+                train_and_evaluate()
+            except Exception as e:
+                print(f"Auto-train error: {e}")
+
+        try:
+            self.bundle = joblib.load(self.model_path)
+        except Exception as e:
+            print(f"Model loading error ({e}), re-training models on current environment...")
+            try:
+                from train import train_and_evaluate
+                train_and_evaluate()
+                self.bundle = joblib.load(self.model_path)
+            except Exception as train_err:
+                raise RuntimeError(f"Failed to load or train model: {train_err}")
+
         self.temp_model = self.bundle["temp_model"]
         self.rain_model = self.bundle["rain_model"]
         self.cond_model = self.bundle["cond_model"]
